@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 String? validateEmail(String? value,{FocusNode? fn,BuildContext? context }) {
   Pattern pattern =
@@ -24,4 +25,30 @@ String? validatePassword(String? value,{FocusNode? fn,BuildContext? context }) {
   } else {
     return null;
   }
+}
+enum SnackType { info, success, fail, none }
+showSnackBar(
+    {String? title, String? message, SnackType type = SnackType.none, int milliseconds=1500}) {
+  Get.showSnackbar(GetBar(
+    icon: type == SnackType.none
+        ? null
+        : type == SnackType.success
+        ? const Icon(
+      Icons.check_circle,
+      color: Colors.green,
+    )
+        : type == SnackType.fail
+        ? const Icon(
+      Icons.close_rounded,
+      color: Colors.red,
+    )
+        : const Icon(
+      Icons.info,
+      // color: themePrimaryColor,
+    ),
+    title: title,
+    message: message,
+    isDismissible: true,
+    duration: Duration(milliseconds: milliseconds),
+  ));
 }
