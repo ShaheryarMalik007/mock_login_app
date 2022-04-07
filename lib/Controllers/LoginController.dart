@@ -70,7 +70,7 @@ class LoginController extends GetxController{
             "password":password
           }
       );
-      if (res.statusCode ==200 && kDebugMode) {
+      if (res.statusCode ==200 ) {
         print((res.body.toString()));
         try{
           UserModel user = UserModel.fromJson(jsonDecode(res.body.toString()));
